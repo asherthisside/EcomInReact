@@ -1,0 +1,30 @@
+useReducer -> Hook for using custom logic in state Management
+
+const [state, dispatch] = useReducer(reducer, initialState)
+
+reducer(state, action)
+
+
+// const initialState = {
+//   count: 0,
+//   clicks: 0
+// }
+
+// const reducer = (state, action) => {
+//   switch(action) {
+//     case "increase":
+//       return {count: state.count + 1, clicks: state.clicks + 1}
+      
+//       case "decrease":
+//         // return state - 1
+//         return {count: state.count - 1, clicks: state.clicks + 1}
+//   }
+// }
+
+  // const [count, dispatch] = useReducer(reducer, initialState)
+
+        {/* <h4 className="mt-4 text-center display-4">You have <span id="number">({count.count})</span> Products in cart right now</h4>
+        <h4 className="mt-4 text-center display-4">Clicked: {count.clicks} times</h4>
+        <div> */}
+        {/* <button className="btn btn-outline-primary mx-4" onClick={() => {dispatch("increase")}}>Increase</button>
+        <button className="btn btn-outline-primary mx-4" onClick={() => {dispatch("decrease")}}>Decrease</button> */}

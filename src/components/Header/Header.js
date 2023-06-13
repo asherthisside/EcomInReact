@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Link} from 'react-router-dom'
+// import { loginContext } from '../../App'
+import { useContext } from 'react'
 
 export default function Header() {
+  // const [loggedIn, setLoggedIn] = useContext(loginContext)
+
+  // useEffect(() => {
+  //   console.log(loggedIn);
+  // })
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
@@ -16,6 +23,11 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/cart">Cart</Link>
+            </li>
+            <li className="nav-item">
+              {/* <Link className="nav-link" to="/cart">
+                <button className='btn btn-primary' onClick={() => {setLoggedIn(!loggedIn)}}>Logout</button>
+              </Link> */}
             </li>
           </ul>
         </div>

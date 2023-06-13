@@ -1,9 +1,19 @@
 import React from 'react'
 import './productCard.css'
+import { useCart } from '../../context/cart-context'
 
-export default function ProductCard(props) {
-  const {name, image, category, oldPrice, newPrice, discount, rating} = props
-  console.log(image);
+export default function ProductCard({ product }) {
+  const { name, image, category, oldPrice, newPrice, discount, rating } = product
+
+  const { cart, cartDispatch } = useCart();
+
+  const addToCartHandler = () => {
+    cartDispatch({
+      type: "ADD_TO_CART",
+      payload: product
+    })
+  }
+
   return (
     <div className="mb-4 card shadow-sm">
       <img className='thumbnail' src={image} alt="" />
@@ -17,8 +27,12 @@ export default function ProductCard(props) {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div className="btn-group">
-            <button type="button" className="btn btn-outline-primary"><i class="fa-solid fa-cart-shopping"></i></button>
-            <button type="button" className="btn btn-outline-danger"><i class="fa-solid fa-heart"></i></button>
+            <button type="button" className="btn btn-outline-primary" onClick={addToCartHandler}>
+              <i className="fa-solid fa-cart-shopping"></i>
+            </button>
+            <button type="button" className="btn btn-outline-danger">
+              <i className="fa-solid fa-heart"></i>
+            </button>
           </div>
           <small className="text-body-secondary"><i className="fa-solid fa-star"></i>&nbsp;{rating}</small>
         </div>
