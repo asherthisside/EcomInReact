@@ -1,9 +1,11 @@
 import React from 'react'
 import './productCard.css'
 import { useCart } from '../../context/cart-context'
+import { searchProductById } from '../../utils/findProductInCart'
+import { useNavigate } from 'react-router-dom'
 
 export default function ProductCard({ product }) {
-  const { name, image, category, oldPrice, newPrice, discount, rating } = product
+  const { id, name, image, category, oldPrice, newPrice, discount, rating } = product
 
   const { cart, cartDispatch } = useCart();
 
@@ -12,6 +14,13 @@ export default function ProductCard({ product }) {
       type: "ADD_TO_CART",
       payload: product
     })
+  }
+
+  const navigate = useNavigate()
+  const isProductInCart = searchProductById(cart, id)
+
+  const goToCartHandler = () => {
+    navigate("/cart")
   }
 
   return (
@@ -27,8 +36,8 @@ export default function ProductCard({ product }) {
         </div>
         <div className="d-flex justify-content-between align-items-center">
           <div className="btn-group">
-            <button type="button" className="btn btn-outline-primary" onClick={addToCartHandler}>
-              <i className="fa-solid fa-cart-shopping"></i>
+            <button type="button" className="btn btn-outline-primary" onClick={isProductInCart ? goToCartHandler : addToCartHandler}>
+              {isProductInCart ? "Go to Cart" : "Add to Cart"}
             </button>
             <button type="button" className="btn btn-outline-danger">
               <i className="fa-solid fa-heart"></i>
